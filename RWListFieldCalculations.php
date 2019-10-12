@@ -2,7 +2,7 @@
 /*
 Plugin Name: Gravity Forms List Field Calculations Add-On
 Plugin URI:
-Description: A simple add-on to enable the use of List fields in calculations.
+Description: DO NOT UPGRADE A simple add-on to enable the use of List fields in calculations.
 Version: 0.6
 Author: Richard Wawrzyniak
 Author URI:
@@ -62,7 +62,7 @@ if ( class_exists( 'GFForms' ) ) {
                         // get the $field object for the provided id
                         $field_id = $match[1];
                         $lfield   = GFAPI::get_field( $form, $field_id );
-                        
+
                         // check that we have a field
                         if ( ! $lfield ) {
                             continue;
@@ -86,12 +86,12 @@ if ( class_exists( 'GFForms' ) ) {
 
         function list_field_calculations_script( $form ) {
 
-            if ( self::has_list_field_merge_tag( $form ) ) {
+            //if ( self::has_list_field_merge_tag( $form ) ) {
                 wp_enqueue_script( 'LFCalc', $this->get_base_url() . '/js/LFCalc.js', array(
                     'jquery',
                     'gform_gravityforms'
                 ), $this->_version, true );
-            }
+            //}
 
         }
 
@@ -112,7 +112,7 @@ if ( class_exists( 'GFForms' ) ) {
                     // get the $field object for the provided id
                     $field_id = $match[1];
                     $field    = GFAPI::get_field( $form, $field_id );
-                    
+
                     // check that we have a field
                     if ( ! $field ) {
                         continue;
@@ -125,6 +125,7 @@ if ( class_exists( 'GFForms' ) ) {
 
                     // get the list fields values from the $lead
                     $list_values = empty( $lead[ $field_id ] ) ? array() : unserialize( $lead[ $field_id ] );
+
                     $count       = 0;
 
                     // if column number found sum column values otherwise count number of rows
@@ -141,7 +142,9 @@ if ( class_exists( 'GFForms' ) ) {
                         }
 
                         foreach ( $list_values as $value ) {
+
                             if ( $column_count == 1 ) {
+                            	   $value = is_array($value) ? current($value) : $value;
                                 $count += GFCommon::to_number( $value );
                             } else {
                                 $count += GFCommon::to_number( $value[ $column ] );

@@ -1,0 +1,16 @@
+{
+  "name": "sidouglas/rw-list-field-calculations",
+  "description": "A simple add-on to enable the use of List fields in calculations.",
+  "keywords": ["wordpress", "plugin"],
+  "homepage": "https://github.com/sidouglas/rw-list-field-calculations.git",
+  "license": "MIT",
+  "authors": [{
+    "name": "Simon Douglas",
+    "email": "si@simondouglas.com",
+    "homepage": "http://simondouglas.com"
+  }],
+  "type": "wordpress-plugin",
+  "require": {
+    "composer/installers": "^1.0.6"
+  }
+}
